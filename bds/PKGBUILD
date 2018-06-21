@@ -1,12 +1,12 @@
 pkgname='bds'
-pkgver='7330659fae5477b783ece695c6cc5401950666cb'
+pkgver='5fe26d123547cea4adfcc69d51d2a2315891bd36'
 pkgrel=1
 pkgdesc="Beyond Dying Skies Official Simulation"
 arch=('x86_64')
 url="https://github.com/Aaron-SP/bds/archive"
 license=('GPL3')
 source=("$pkgname-$pkgver.zip::$url/$pkgver.zip")
-md5sums=('41f77e6b8829908b3f74517f07dc9f0a')
+md5sums=('27d97e74b82b5363867da2794a02648c')
 
 build(){
   cd "$pkgname-$pkgver"
@@ -19,21 +19,25 @@ build(){
 package() {
   cd "$pkgname-$pkgver"
   
-  # Make folders
+  # Install binaries
   install -d ${pkgdir}/opt/bds/bin
-  install -d ${pkgdir}/opt/bds/data
-  install -d ${pkgdir}/usr/bin
-
-  # Copy bin folder
   install -m 755 bin/* $pkgdir/opt/bds/bin
+
+  # Install data
+  install -d ${pkgdir}/opt/bds/data
+  cp -r data/* $pkgdir/opt/bds/data
+
+  # Install favicon
+  install -m 744 favicon.ico $pkgdir/opt/bds/favicon.ico
+
+  # Create save folder
+  install -dm 777 ${pkgdir}/opt/bds/save
 
   # Copy game start script
   install -m 755 bds.game $pkgdir/opt/bds/bds.game
 
-  # Copy data folder
-  cp -r data/* $pkgdir/opt/bds/data
-
   # Symlink to the game script
+  install -d ${pkgdir}/usr/bin
   ln -s /opt/bds/bds.game $pkgdir/usr/bin/bds.game
 }
 
