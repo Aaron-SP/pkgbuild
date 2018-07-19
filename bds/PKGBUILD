@@ -1,12 +1,12 @@
 pkgname='bds'
-pkgver='2f425975ebd2c786b1e09f9b9a595675957bdde0'
+pkgver='d3f582ac183c29ec36fafd3cbedd38df09e06b2e'
 pkgrel=1
 pkgdesc="Beyond Dying Skies Official Simulation"
 arch=('x86_64')
 url="https://github.com/Aaron-SP/bds/archive"
 license=('GPL3')
 source=("$pkgname-$pkgver.zip::$url/$pkgver.zip")
-md5sums=('e71f21cd2806c258943a212367d366b7')
+md5sums=('1bef52c4e0b72670130a0e03f9876d3f')
 
 build(){
     cd "$pkgname-$pkgver"
